@@ -1,0 +1,55 @@
+.row1{
+	padding-bottom: 2px;
+	padding-top: 40px;
+	box-shadow:2px 2px 15px black;
+}
+.class1{
+	width:200px;
+	height:40px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    color:#000000;
+    font-size: 16px;
+    margin: 4px 2px;
+   	cursor: pointer;
+    border-radius:12px;
+}
+.class1:hover{
+    background-color: #C0C0C0; /* Green */
+    color: #000000;
+}
+#cla{
+	width:200px;
+	height:40px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    color:#000000;
+    font-size: 16px;
+    margin: 4px 2px;
+   	cursor: pointer;
+    border-radius:12px;
+}
+.column{
+    background:#696969;
+    height:300px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+.columnn{
+	height:300px;
+    background:#696969;
+}
+.columnnn{
+	height:300px;
+	background:#D3D3D3;
+}
+.newcolumn{
+	height:250px;
+	background:#ffffff;
+}
+.col{
+	height:250px;
+	background:#ffffff;
+}

@@ -1,0 +1,375 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="ibox float-e-margins shadow">
+                <div class="ibox-title">
+                    <h5>Create Game</h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <form novalidate name="gameForm" ng-submit="createGame(gameForm.$valid)">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Name:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="text" name="name" ng-model="game.name"
+                                                       placeholder="Enter Game Name" required>
+                                                <div class="white-error-email"
+                                                     ng-show="gameForm.$submitted || gameForm.name.$dirty && gameForm.name.$invalid">
+                                                    <small ng-show="gameForm.name.$error.required">
+                                                        Game Name is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                                                <span class="tag">Description:</span>
+                                            </div>
+                                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                                <textarea name="description" ng-model="game.description"
+                                                  placeholder="Enter Description" required></textarea>
+                                                <div class="white-error-email"
+                                                     ng-show="gameForm.$submitted || gameForm.description.$dirty && gameForm.description.$invalid">
+                                                    <small ng-show="gameForm.description.$error.required">
+                                                        Game Name is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Min Players:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="text" name="minPlayer" ng-model="game.minPlayer" numbers-only
+                                                       placeholder="Enter Min Players" required>
+                                                <div class="white-error-email"
+                                                     ng-show="gameForm.$submitted || gameForm.minPlayer.$dirty && gameForm.minPlayer.$invalid">
+                                                    <small ng-show="gameForm.minPlayer.$error.required">
+                                                        Min Players is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Max Players:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="text" name="maxPlayer" ng-model="game.maxPlayer"
+                                                       placeholder="Enter Max Players" numbers-only required>
+                                                <div class="white-error-email"
+                                                     ng-show="gameForm.$submitted || gameForm.maxPlayer.$dirty && gameForm.maxPlayer.$invalid">
+                                                    <small ng-show="gameForm.maxPlayer.$error.required">
+                                                        Max Players is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Password Protect:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <div class="row">
+                                                    <div class="col-sm-1 col-lg-1 col-md-1 col-xs-1">
+                                                        <label class="control control--checkbox">
+                                                            <input type="checkbox" ng-checked="true" ng-model="game.isProtected">
+                                                            <div class="control__indicator"></div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-11 col-lg-11 col-md-11 col-xs-11">
+                                                        <input type="password" name="password" ng-model="game.password"
+                                                               placeholder="Enter Password" ng-if="game.isProtected" required>
+                                                        <div class="white-error-email"
+                                                             ng-show="gameForm.$submitted || gameForm.password.$dirty && gameForm.password.$invalid">
+                                                            <small ng-show="gameForm.password.$error.required">
+                                                                Password is required.
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Lock Order:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <label class="control control--checkbox">
+                                                    <input type="checkbox" ng-checked="true" ng-model="game.isOrderLock">
+                                                    <div class="control__indicator"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Date Range:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input date-range-picker name="date" class="date-picker" type="text" ng-model="datePicker" placeholder="Enter Date Range" min="datePicker.mindate" required/>
+                                                <div class="white-error-email"
+                                                     ng-show="gameForm.$submitted || gameForm.date.$dirty && gameForm.date.$invalid">
+                                                    <small ng-show="gameForm.date.$error.required">
+                                                        Date Range is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Image <i ng-show="gameForm.file.$error.required">*</i></span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9 file-style">
+                                                <input type="file" ngf-select ng-model="picFile" name="file"
+                                                       accept="image/*" ngf-max-size="2MB" required
+                                                       ngf-model-invalid="errorFile" class="file" id="file">
+                                                <div class="file-row-1">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-picture"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="file-row-2">
+                                                    <input type="text" class="form-control input-lg" disabled placeholder="Upload Image" ng-model="picFile.name">
+                                                </div>
+                                                <div class="file-row-3">
+                                                    <button class="browse input-lg" type="button" file-open>
+                                                        <i class="glyphicon glyphicon-search"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="white-error-email" ng-show="gameForm.file.$error.maxSize">
+                                                    <small>File too large
+                                                        {{errorFile.size / 1000000|number:1}}MB: max 2M</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                               <div style="font-size: 16px;border-bottom: 3px solid white;margin-bottom: 42px;padding-bottom: 10px;">Challenges</div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <button class="theme-btn" type="button" ng-click="addChallenge()">Add</button>
+                            </div>
+                        </div>
+                        <div ng-repeat="data in challenges" class="challenge-arr">
+                            <ng-form name="challenge">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                                                <span class="tag">Name:</span>
+                                            </div>
+                                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                                <input type="text" name="name" ng-model="data.name"
+                                                       placeholder="Enter Challenge Name" required>
+                                                <div class="white-error-email"
+                                                     ng-show="challenge.$submitted || challenge.name.$dirty && challenge.name.$invalid">
+                                                    <small ng-show="challenge.name.$error.required">
+                                                        Challenge Name is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                                                <span class="tag">Details:</span>
+                                            </div>
+                                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                                <input type="text" name="details" ng-model="data.details"
+                                                       placeholder="Enter Challenge Details" required>
+                                                <div class="white-error-email"
+                                                     ng-show="challenge.$submitted || challenge.details.$dirty && challenge.details.$invalid">
+                                                    <small ng-show="challenge.details.$error.required">
+                                                        Challenge Details is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Hint:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="text" name="hint" ng-model="data.hint"
+                                                       placeholder="Enter Challenge Hint" required>
+                                                <div class="white-error-email"
+                                                     ng-show="challenge.$submitted || challenge.hint.$dirty && challenge.hint.$invalid">
+                                                    <small ng-show="challenge.hint.$error.required">
+                                                        Challenge Hint is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                                                <span class="tag">Points:</span>
+                                            </div>
+                                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                                <input type="text" name="points" ng-model="data.points"
+                                                       placeholder="Enter Challenge Points" numbers-only required>
+                                                <div class="white-error-email"
+                                                     ng-show="challenge.$submitted || challenge.points.$dirty && challenge.points.$invalid">
+                                                    <small ng-show="challenge.points.$error.required">
+                                                        Challenge Points is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="row form-group">
+                                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                                                <span class="tag">Type:</span>
+                                            </div>
+                                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                                <select name="challengeType" class="form-control" ng-model="data.challengeType" ng-change="deleteChallengeObj(data.challengeType,data)" required>
+                                                    <option value="" selected disabled>Please select</option>
+                                                    <option value="Image">Image</option>
+                                                    <option value="Location">Location</option>
+                                                    <option value="QR code">QR Code</option>
+                                                    <option value="Text">Text</option>
+                                                </select>
+                                                <div class="white-error-email"
+                                                     ng-show="challenge.$submitted || challenge.challengeType.$dirty && challenge.challengeType.$invalid">
+                                                    <small ng-show="challenge.challengeType.$error.required">
+                                                        Challenge Type is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-if="data.challengeType =='QR code'">
+                                        <div class="row form-group">
+                                            <div class="col-sm-4 col-lg-4 col-md-4 col-xs-4">
+                                                <span class="tag">QR Code:</span>
+                                            </div>
+                                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                                <input type="text" name="qrCode" ng-model="data.qrCode"
+                                                       placeholder="Enter QR Code" required ng-if="data.challengeType =='QR code'">
+                                                <div class="white-error-email"
+                                                     ng-show="challenge.$submitted || challenge.qrCode.$dirty && challenge.qrCode.$invalid">
+                                                    <small ng-show="challenge.qrCode.$error.required">
+                                                        QR Code is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-if="data.challengeType =='Location'">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Location:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="text" name="location" ng-model="data.location" details="data.geometry"
+                                                       placeholder="Enter Location" ng-autocomplete required ng-if="data.challengeType =='Location'">
+                                                <div class="white-error-email"
+                                                     ng-show="challenge.$submitted || challenge.location.$dirty && challenge.location.$invalid">
+                                                    <small ng-show="challenge.location.$error.required">
+                                                        Location is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-if="data.challengeType =='Location'">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Distance (m):</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <input type="number" name="distance" ng-model="data.distanceDiff"
+                                                       placeholder="Enter Distance (m)" required ng-if="data.challengeType =='Location'">
+                                                <div class="white-error-email"
+                                                     ng-show="challenge.$submitted || challenge.distance.$dirty && challenge.distance.$invalid">
+                                                    <small ng-show="challenge.distance.$error.required">
+                                                        Distance is required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-if="data.challengeType =='Image'">
+                                        <div class="row form-group">
+                                            <div class="col-sm-3 col-lg-3 col-md-3 col-xs-3">
+                                                <span class="tag">Keywords:</span>
+                                            </div>
+                                            <div class="col-sm-9 col-lg-9 col-md-9 col-xs-9">
+                                                <tags-input name="keywords" replace-spaces-with-dashes="false" ng-model="data.keywords" required placeholder="Add Keywords and press enter" ng-if="data.challengeType =='Image'"></tags-input>
+                                                <div class="white-error-email"
+                                                     ng-show="gameForm.$submitted || gameForm.keywords.$dirty && gameForm.keywords.$invalid">
+                                                    <small ng-show="gameForm.keywords.$error.required">
+                                                        Keywords are required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12" ng-if="data.challengeType =='Text'">
+                                        <div class="row form-group">
+                                            <div class="col-sm-2 col-lg-2 col-md-2 col-xs-2">
+                                                <span class="tag">Answers:</span>
+                                            </div>
+                                            <div class="col-sm-10 col-lg-10 col-md-10 col-xs-10 textAnswer">
+                                                <tags-input name="answers" replace-spaces-with-dashes="false" ng-model="data.textAnswer" required placeholder="Add Answers and press enter"></tags-input>
+                                                <div class="white-error-email"
+                                                     ng-show="gameForm.$submitted || gameForm.answers.$dirty && gameForm.answers.$invalid">
+                                                    <small ng-show="gameForm.answers.$error.required">
+                                                        Answers are required.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-form>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <button class="theme-btn" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,162 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="ibox float-e-margins shadow">
+                <div class="ibox-title">
+                    <h5>List Game</h5>
+                    <div ibox-tools></div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row table-size-selector">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            Page Size :
+                            <select convert-to-number ng-model="listOptions.limit" ng-change="listGameFunc()">
+                                <option value="5" selected>5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <div>
+                                <input type="text" ng-model="search" class="searchinput" placeholder="Search Game..">
+                                <button type="button" ng-click="listGameFunc()" class="pull-right searchbutton">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-bordered dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>Game Image</th>
+                            <th>Name</th>
+                            <th>Details</th>
+                            <th>Players</th>
+                            <th>Users Completed</th>
+                            <th>Order Lock</th>
+                            <th>Password Protected</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Active</th>
+                            <th>Remove Game</th>
+                            <th>Challenges</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in gameList">
+                            <td>
+                                <a ng-click="openLightboxModal($index)">
+                                    <img ng-src="{{data.gameImage.original || 'img/no-image-available.jpg'}}" style="width: 140px; height: 85px;max-width: 100%;">
+                                </a>
+                            </td>
+                            <td>{{data.name || 'N.A.'}}</td>
+                            <td>{{data.details || 'N.A.'}}</td>
+                            <td>
+                                <p>Max Player: {{data.maxPlayer || ''}}</p>
+                                <p>Min Player: {{data.minPlayer || ''}}</p>
+                            </td>
+                            <td>{{data.totalUserCompleted}}</td>
+                            <td>{{data.isOrderLock ? 'Yes':'No'}}</td>
+                            <td>
+                                <div ng-if="data.is_protected">
+                                    <p>Yes</p>
+                                    <p>Password:- {{data.password}}</p>
+                                </div>
+                                <div ng-if="!data.is_protected">
+                                    No
+                                </div>
+                            </td>
+                            <td>{{data.startDate | date}}</td>
+                            <td>{{data.endDate | date}}</td>
+                            <td>{{data.is_active ? 'Yes':'No'}}</td>
+                            <td>
+                                <button class="theme-btn-danger" type="button" ng-click="removeGame(data._id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </td>
+                            <td>
+                                <button class="theme-btn" type="button" ng-click="viewChallenge(data.challenges)">View</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <p>Showing {{pg_options.start}} to {{pg_options.end}} of Total {{listOptions.total}} Records</p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <ul uib-pagination total-items="listOptions.total" ng-model="listOptions.pageNo" items-per-page="listOptions.limit" ng-change="pageChanged()" max-size="listOptions.maxSize" boundary-link-numbers="true" boundary-links="true" force-ellipses="false" class="pull-right"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="challenge-template.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Challenge Details</h3>
+    </div>
+    <div class="modal-body" style="height: 400px;overflow-y: scroll;">
+        <table class="table dataTables-example table-popup">
+            <thead>
+            <tr>
+                <th>S.No.</th>
+                <th>Name</th>
+                <th>Details</th>
+                <th>Points</th>
+                <th>Hint</th>
+                <th>Challenge Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="data in challenges">
+                <td>{{$index+1}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.details}}</td>
+                <td>{{data.points}}</td>
+                <td>{{data.hint}}</td>
+                <td>
+                    <table class="table table-striped table-popup">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th ng-if="data.challengeType=='Image'">Keywords</th>
+                                <th ng-if="data.challengeType=='Location'">Location</th>
+                                <th ng-if="data.challengeType=='QR code'">QR Code String</th>
+                                <th ng-if="data.challengeType=='Text'">Text Answer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{data.challengeType}}</td>
+                                <td ng-if="data.challengeType=='Image'">
+                                    <div>
+                                        <div ng-repeat="x in data.keywords" class="custom-tags-keywords">{{x}}</div>
+                                    </div>
+                                </td>
+                                <td ng-if="data.challengeType=='Location'">
+                                    {{data.location}}
+                                </td>
+                                <td ng-if="data.challengeType=='QR code'">
+                                    {{data.qrCode}}
+                                </td>
+                                <td ng-if="data.challengeType=='Text'">
+                                    <div>
+                                        <div ng-repeat="x in data.textAnswer" class="custom-tags">{{x}}</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="btn theme-btn pull-right" type="button" ng-click="cancel()" style="width: 90px;">Cancel</button>
+    </div>
+</script>

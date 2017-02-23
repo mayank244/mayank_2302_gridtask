@@ -1,0 +1,41 @@
+<nav class="navbar-default navbar-static-side" role="navigation" id="side-navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element" dropdown>
+                    <a class="dropdown-toggle" dropdown-toggle href>
+                        <p class="chillax-logo">BTW</p>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    BTW
+                </div>
+            </li>
+            <!--<li ui-sref-active="active">-->
+                <!--<a ui-sref="parent.dashboard"><i class="fa fa-diamond"></i> <span class="nav-label">Dashboard</span> </a>-->
+            <!--</li>-->
+            <li ng-class="{active: $state.includes('game')}">
+                <a href="index.html"><i class="fa fa-database"></i> <span class="nav-label">Game</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('game')}">
+                    <li ui-sref-active="active"><a ui-sref="game.create">Create</a></li>
+                    <li ui-sref-active="active"><a ui-sref="game.list">List</a></li>
+                </ul>
+            </li>
+            <li ng-class="{active: $state.includes('players')}">
+                <a href="index.html"><i class="fa fa-users"></i> <span class="nav-label">Players</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('players')}">
+                    <li ui-sref-active="active"><a ui-sref="player.list">List</a></li>
+                </ul>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="parent.teamList"><i class="fa fa-diamond"></i> <span class="nav-label">Team List</span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="parent.feeds"><i class="fa fa-video-camera"></i> <span class="nav-label">Feeds List</span> </a>
+            </li>
+        </ul>
+    </div>
+</nav>
